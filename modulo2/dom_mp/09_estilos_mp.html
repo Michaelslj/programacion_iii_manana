@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulación de Estilos</title>
+  <style>
+    #cuadro {
+      width: 100px;
+      height: 100px;
+      background-color: #58a6ff;
+      border-radius: 10px;
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Manipular Estilos</h1>
+
+  <div id="cuadro"></div>
+
+  <div style="margin-top:20px;">
+    <button id="btnColor">🎨 Cambiar Color</button>
+    <button id="btnTamano">⬆️ Aumentar Tamaño</button>
+    <button id="btnReiniciar">🔄 Reiniciar</button>
+  </div>
+
+  <script src="09_estilos_mp.js"></script>
+  <script>
+    const cuadro = document.getElementById('cuadro');
+    const btnColor = document.getElementById('btnColor');
+    const btnTamano = document.getElementById('btnTamano');
+    const btnReiniciar = document.getElementById('btnReiniciar');
+
+    btnColor.addEventListener('click', () => {
+      if(cuadro) cuadro.style.backgroundColor = '#ff5858';
+    });
+
+    btnTamano.addEventListener('click', () => {
+      if(cuadro) {
+        cuadro.style.width = '200px';
+        cuadro.style.height = '200px';
+      }
+    });
+
+    btnReiniciar.addEventListener('click', () => {
+      if(cuadro) {
+        cuadro.style.width = '100px';
+        cuadro.style.height = '100px';
+        cuadro.style.backgroundColor = '#58a6ff';
+      }
+    });
+  </script>
+
+</body>
+</html>
