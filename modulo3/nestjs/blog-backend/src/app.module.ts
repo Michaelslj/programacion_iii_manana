@@ -9,7 +9,6 @@ import { CategoriesModule } from './categories/categories.module';
 import { PostsModule } from './posts/posts.module';
 import { BasicsModule } from './basics/basics.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -22,7 +21,7 @@ import { BasicsModule } from './basics/basics.module';
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
-      //ssl: { rejectUnauthorized: false },//
+      //ssl: { rejectUnauthorized: false },
     }),
     AuthModule,
     BasicsModule,
