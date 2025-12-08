@@ -7,12 +7,17 @@ import e from 'express';
 @Injectable()
 export class MailService {
   async sendMail(dto: SendMailDto) {
+    console.log('MAIL_USER:', process.env.MAIL_USER);
+    console.log('MAIL_PASS:', process.env.MAIL_PASS);  
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'smtp.gmail.com',
+      port: 465,
+      secure:true,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
+      tls:{rejectUnauthorized:false},
     });
 
     try {
