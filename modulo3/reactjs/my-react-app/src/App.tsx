@@ -51,7 +51,7 @@ const userData = { name: "Carlos", age: 30, apellido: "Fernandez", direccion: "Q
 
 export default App; */
 
-import ParentButtonOne from "./props/ParentButtonOne";
+/*import ParentButtonOne from "./props/ParentButtonOne";
 import ParentIncrementButton from "./props/ParentIncrementButton";
 import ParentInputNotifier from "./props/ParentInputNotifier";
 import ParentLoginForm from "./props/ParentLoginForm";
@@ -65,6 +65,31 @@ function App(){
       <ParentInputNotifier/>
       <ParentUserList/>
       <ParentLoginForm/>
+    </>
+  )
+}
+export default App; */
+
+import HoverFont from "./useState/HoverFont";
+import AccessWithLimit from "./useState/AccessWithLimit";
+import LoginWithLimit from "./useState/LoginWithLimit";
+import DocumentTitleChanger from "./useState/DocumentTitleChanger";
+import PostLikes from "./useState/PostLikes";
+import CheckboxSummary from "./useState/CheckboxSummary";
+import LanguageSwitcher from "./useState/LanguageSwitcher";
+import MultiSwitch from "./useState/MultiSwitch";
+
+function App(){
+  return (
+    <>
+      <HoverFont/>
+      <AccessWithLimit/>
+      <LoginWithLimit/>
+      <DocumentTitleChanger/>
+      <PostLikes/>
+      <CheckboxSummary/>
+      <LanguageSwitcher/>
+      <MultiSwitch/>
     </>
   )
 }
