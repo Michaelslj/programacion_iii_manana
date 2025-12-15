@@ -32,6 +32,7 @@ function App() {
 
 export default App;*/
 
+
 /*import PromedioForm from "./components/PromedioTresNotasForm";
 import Greeting from "./props/Greeting";
 import UserCard from "./props/UserCard";
@@ -70,7 +71,7 @@ function App(){
 }
 export default App; */
 
-import HoverFont from "./useState/HoverFont";
+/*import HoverFont from "./useState/HoverFont";
 import AccessWithLimit from "./useState/AccessWithLimit";
 import LoginWithLimit from "./useState/LoginWithLimit";
 import DocumentTitleChanger from "./useState/DocumentTitleChanger";
@@ -82,7 +83,7 @@ import MultiSwitch from "./useState/MultiSwitch";
 function App(){
   return (
     <>
-      <HoverFont/>
+      /*<HoverFont/>
       <AccessWithLimit/>
       <LoginWithLimit/>
       <DocumentTitleChanger/>
@@ -93,9 +94,46 @@ function App(){
     </>
   )
 }
-export default App; 
+export default App; */
 
+/*import ClickHistory from "./useState/ClickHistory";
+import DynamicColor from "./useState/DynamicColor";
+function App(){
+  return (
+    <>
+      <DynamicColor/>
+      <ClickHistory/>
+      
+    </>
+  )
+}
+export default App; */
 
+/*import PersistCounter from "./useEffect/PersistCounter";
+
+function App(){
+  return (
+    <>
+      <PersistCounter/>
+    </>
+  )
+}
+export default App; */
+
+import React, { useState } from 'react';
+import { LanguageContext } from './useContext/LanguageContext';
+import LanguageToggle from './useContext/LanguageToggle';
+
+export default function App() {
+  const [lang, setLang] = useState('es');
+  const toggleLanguage = () => setLang(prev => (prev === 'es' ? 'en' : 'es'));
+
+  return (
+    <LanguageContext.Provider value={{ lang, toggleLanguage }}>
+      <LanguageToggle />
+    </LanguageContext.Provider>
+  );
+}
 
 
 
