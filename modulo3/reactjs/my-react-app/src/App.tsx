@@ -33,6 +33,8 @@ function App() {
 export default App;*/
 
 
+
+
 /*import PromedioForm from "./components/PromedioTresNotasForm";
 import Greeting from "./props/Greeting";
 import UserCard from "./props/UserCard";
@@ -120,7 +122,7 @@ function App(){
 }
 export default App; */
 
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import { LanguageContext } from './useContext/LanguageContext';
 import LanguageToggle from './useContext/LanguageToggle';
 
@@ -133,7 +135,20 @@ export default function App() {
       <LanguageToggle />
     </LanguageContext.Provider>
   );
+}*/
+
+import MoverCaja from "./useRef/MoverCaja";
+
+function App(){
+  return (
+    <>
+      <MoverCaja/>
+       
+    </>
+  );
 }
+export default App; 
+
 
 
 
