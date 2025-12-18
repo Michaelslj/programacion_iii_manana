@@ -34,6 +34,11 @@ export default App;*/
 
 
 
+/*import Contador from "./useCallback/Contador";
+import ReRender from "./useCallback/ReRender";*/
+
+
+
 
 /*import PromedioForm from "./components/PromedioTresNotasForm";
 import Greeting from "./props/Greeting";
@@ -137,18 +142,44 @@ export default function App() {
   );
 }*/
 
-import MoverCaja from "./useRef/MoverCaja";
+
+import ListaReducer from "./useReducer/ListaReducer";
+
 
 function App(){
   return (
     <>
-      <MoverCaja/>
-       
+      <ListaReducer/>
     </>
   );
 }
-export default App; 
+export default App;
 
 
 
+/*import Lista from './Lista';
 
+export default function App() {
+  const elementos = ["uno", "dos", "tres", "cuatro"];
+
+  return (
+    <>
+      <h2>Ejemplo de Lista</h2>
+      <Lista items={elementos} />
+    </>
+  );
+}*/
+
+/*import Lista from "./useCallback/Lista";
+import ContadorReducer from "./useReducer/ContadorReducer";
+
+export default function App() {
+  const elementos = [1,2,3,4,5,6,7,8,9,10]; 
+
+  return (
+    <>
+      <h2>Ejemplo de Lista</h2>
+      <Lista items={elementos} />
+    </>
+  );
+}*/
