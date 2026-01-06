@@ -34,6 +34,9 @@ export default App;*/
 
 
 
+
+
+
 /*import Contador from "./useCallback/Contador";
 import ReRender from "./useCallback/ReRender";*/
 
@@ -143,13 +146,12 @@ export default function App() {
 }*/
 
 
-import ListaReducer from "./useReducer/ListaReducer";
-
+import MostrarSinParpadeoTS from "./useImperativeHandle/MostrarSinParpadeoTS";
 
 function App(){
   return (
     <>
-      <ListaReducer/>
+      <MostrarSinParpadeoTS/>
     </>
   );
 }
