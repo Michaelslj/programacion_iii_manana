@@ -146,12 +146,12 @@ export default function App() {
 }*/
 
 
-import MostrarSinParpadeoTS from "./useImperativeHandle/MostrarSinParpadeoTS";
+import ListaUsuariosPaginado from "./formularios/ListaUsuariosPaginado";
 
 function App(){
   return (
     <>
-      <MostrarSinParpadeoTS/>
+      <ListaUsuariosPaginado/>
     </>
   );
 }
