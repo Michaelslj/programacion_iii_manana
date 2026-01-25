@@ -1,0 +1,108 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { paginate, IPaginationOptions, Pagination } from 'nestjs-typeorm-paginate';
+import { Repository } from 'typeorm';
+import { Post } from './post.entity';
+import { CreatePostDto } from './dto/create-post.dto';
+import { Category } from '../categories/category.entity';
+
+interface PostPaginationOptions extends IPaginationOptions {
+  search?: string;
+  searchField?: string;
+  sortBy?: string;
+  sortOrder?: 'ASC' | 'DESC';
+}
+
+
+@Injectable()
+export class PostsService {
+  constructor(
+    @InjectRepository(Post)
+    private postsRepository: Repository<Post>,
+    @InjectRepository(Category)
+    private categoriesRepository: Repository<Category>,
+  ) {}
+
+  async create(createPostDto: CreatePostDto): Promise<Post | null> {
+    try {
+      const category = await this.categoriesRepository.findOne({ where: { id: createPostDto.categoryId } });
+      if (!category) return null;
+
+      const post = this.postsRepository.create({
+        title: createPostDto.title,
+        content: createPostDto.content,
+        category: category,
+      });
+
+      return await this.postsRepository.save(post);
+    } catch (err) {
+      console.error('Error creating post:', err);
+      return null;
+    }
+  }
+
+  async findAll(options: PostPaginationOptions): Promise<Pagination<Post>> {
+    const { search, searchField, sortBy, sortOrder } = options;
+    const queryBuilder = this.postsRepository.createQueryBuilder('post');
+    queryBuilder.leftJoinAndSelect('post.category', 'category');
+    const allowedSearchFields = ['title', 'content'];
+    const allowedSortFields = ['id', 'title'];
+    if (search && searchField && allowedSearchFields.includes(searchField)) {
+      queryBuilder.andWhere(
+        `LOWER(post.${searchField}) LIKE :search`,
+        { search: `%${search.toLowerCase()}%` },
+      );
+    }
+    const orderField = sortBy && allowedSortFields.includes(sortBy) ? sortBy : 'id';
+    const orderDirection: 'ASC' | 'DESC' =
+      sortOrder === 'DESC' ? 'DESC' : 'ASC';
+    queryBuilder.orderBy(`post.${orderField}`, orderDirection);
+    return paginate<Post>(queryBuilder, {
+      page: options.page,
+      limit: options.limit,
+    });
+  }
+
+
+  async findOne(id: string): Promise<Post | null> {
+    try {
+      return await this.postsRepository.findOne({ where: { id }, relations: ['category'] });
+    } catch (err) {
+      console.error('Error fetching post:', err);
+      return null;
+    }
+  }
+  async update(id: string, dto: CreatePostDto): Promise<Post | null> {
+    try {
+      const post = await this.findOne(id);
+      if (!post) return null;
+
+      if (dto.categoryId) {
+        const category = await this.categoriesRepository.findOne({ where: { id: dto.categoryId } });
+        if (!category) return null;
+        post.category = category;
+      }
+
+      post.title = dto.title ?? post.title;
+      post.content = dto.content ?? post.content;
+
+      return await this.postsRepository.save(post);
+    } catch (err) {
+      console.error('Error updating post:', err);
+      return null;
+    }
+  }
+
+  async remove(id: string): Promise<boolean> {
+    try {
+      const result = await this.postsRepository.delete(id);
+      return result.affected !== 0;
+    } catch (err) {
+      console.error('Error deleting post:', err);
+      return false;
+    }
+  }
+}
+
+
+
